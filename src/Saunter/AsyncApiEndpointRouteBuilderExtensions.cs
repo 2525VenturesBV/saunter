@@ -34,10 +34,10 @@ namespace Saunter
 
             // Retrieve the route from options. If options can't be retrieved, use default constant
             var options = endpoints.ServiceProvider.GetService<IOptions<AsyncApiOptions>>();
-            var route = "/asyncapi/ui/{resource}";
-            var subRoute = "/asyncapi/ui/{resource}/{subresource}";
+            var route = options.Value.Middleware.UiBaseRoute + "{*resource}";
+            // var subRoute = "/asyncapi/ui/{resource}/{subresource}";
             // Add the endpoints
-            endpoints.MapGet(subRoute, pipeline).WithDisplayName("Async API UI Assets");
+            // endpoints.MapGet(subRoute, pipeline).WithDisplayName("Async API UI Assets");
             return endpoints.MapGet(route, pipeline).WithDisplayName("Async API UI");
         }
     }
